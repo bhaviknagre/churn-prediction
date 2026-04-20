@@ -1,0 +1,7 @@
+__pycache __/
+*.pyc
+.env
+data/
+models/
+.mlflow
+dvc.lock
