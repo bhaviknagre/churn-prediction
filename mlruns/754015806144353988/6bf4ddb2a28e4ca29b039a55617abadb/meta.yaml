@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/bhaviknagre/mops-churn-prediction/mlruns/754015806144353988/6bf4ddb2a28e4ca29b039a55617abadb/artifacts
+end_time: 1776710922207
+entry_point_name: ''
+experiment_id: '754015806144353988'
+lifecycle_stage: active
+run_id: 6bf4ddb2a28e4ca29b039a55617abadb
+run_name: sedate-shad-431
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1776710918222
+status: 3
+tags: []
+user_id: bhaviknagre
