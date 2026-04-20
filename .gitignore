@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.env
+data/raw/telco_data.xlsx
+!*.dvc
+.dvc/cache
+/data/.gitignore

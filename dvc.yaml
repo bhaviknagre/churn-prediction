@@ -1,0 +1,8 @@
+stages:
+  preprocess:
+    cmd: python src/data/process.py
+    deps:
+    - data/raw/telco_data.xlsx
+    - src/data/process.py
+    outs:
+    - data/processed

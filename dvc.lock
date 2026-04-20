@@ -1,0 +1,19 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python src/data/process.py
+    deps:
+    - path: data/raw/telco_data.xlsx
+      hash: md5
+      md5: 8534d3efea2a52104cba8605fef6a7df
+      size: 1368250
+    - path: src/data/process.py
+      hash: md5
+      md5: 6fd3355600c1a70022b66b2b027384ef
+      size: 1961
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: 7d732301f113b98f3fe0b6c0d6cdc6aa.dir
+      size: 4076344
+      nfiles: 4
