@@ -9,36 +9,35 @@ stages:
       size: 1368250
     - path: src/data/process.py
       hash: md5
-      md5: 9addec489e6985d0cacedb5647928d96
-      size: 2489
+      md5: 98461e9194251b13627f02bf1e985623
+      size: 2550
     params:
       params.yaml:
         split.test_size: 0.2
     outs:
     - path: data/processed
       hash: md5
-      md5: 7d732301f113b98f3fe0b6c0d6cdc6aa.dir
-      size: 4076344
+      md5: a308fa0c762cf474a8e6144c7ae63098.dir
+      size: 3664833
       nfiles: 4
   train:
     cmd: python3 src/models/train.py
     deps:
     - path: data/processed
       hash: md5
-      md5: 7d732301f113b98f3fe0b6c0d6cdc6aa.dir
-      size: 4076344
+      md5: a308fa0c762cf474a8e6144c7ae63098.dir
+      size: 3664833
       nfiles: 4
     - path: src/models/train.py
       hash: md5
-      md5: 49c03f474cb72c1a009a025f15110412
-      size: 1894
+      md5: bcf11e591f2aa9495a8f3a6071b5f9e1
+      size: 2272
     params:
       params.yaml:
         model.max_depth: 5
         model.n_estimators: 100
     outs:
-    - path: models
+    - path: models/model.joblib
       hash: md5
-      md5: d751713988987e9331980363e24189ce.dir
-      size: 0
-      nfiles: 0
+      md5: dc6fb3d8084ddbfe0e0281e2f71ca333
+      size: 508649
