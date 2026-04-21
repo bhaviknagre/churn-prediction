@@ -1,0 +1,10 @@
+artifact_location: file:///Users/bhaviknagre/mops-churn-prediction/mlruns/601896084487678584/models/m-06945eebe1814f29941680605304f604/artifacts
+creation_timestamp: 1776748106676
+experiment_id: '601896084487678584'
+last_updated_timestamp: 1776748110261
+model_id: m-06945eebe1814f29941680605304f604
+model_type: null
+name: model
+source_run_id: a3f16d2666b44d81af39fea9f0af64df
+status: 2
+status_message: null

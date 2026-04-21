@@ -1,0 +1,22 @@
+artifact_path: file:///Users/bhaviknagre/mops-churn-prediction/mlruns/754015806144353988/models/m-ce9f4c1dc0b347d5bab0e98b5135697e/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.9.6
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.6.1
+mlflow_version: 3.1.4
+model_id: m-ce9f4c1dc0b347d5bab0e98b5135697e
+model_size_bytes: 168132
+model_uuid: m-ce9f4c1dc0b347d5bab0e98b5135697e
+prompts: null
+run_id: e70a1fabdc9f418a9fecbee20a298ccd
+utc_time_created: '2026-04-21 04:54:19.079424'

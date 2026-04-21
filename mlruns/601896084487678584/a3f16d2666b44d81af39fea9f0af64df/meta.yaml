@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/bhaviknagre/mops-churn-prediction/mlruns/601896084487678584/a3f16d2666b44d81af39fea9f0af64df/artifacts
+end_time: 1776748110326
+entry_point_name: ''
+experiment_id: '601896084487678584'
+lifecycle_stage: active
+run_id: a3f16d2666b44d81af39fea9f0af64df
+run_name: fearless-bass-982
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1776748106138
+status: 3
+tags: []
+user_id: bhaviknagre

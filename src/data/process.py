@@ -22,11 +22,8 @@ def load_params():
 def clean_data(df):
     if "customerID" in df.columns:
         df = df.drop(columns=["customerID"])
-    
-    # Use the name with the space as discovered earlier
     if "Total Charges" in df.columns:
         df["Total Charges"] = pd.to_numeric(df["Total Charges"], errors="coerce")
-    
     df = df.fillna(df.median(numeric_only=True))
     return df
 
@@ -41,22 +38,21 @@ def split_data(df, test_size):
     target_col = "Churn Label" 
     
     if target_col not in df.columns:
-        raise KeyError(f"Target '{target_col}' not found. Available: {df.columns.tolist()}")
-    X = df.drop(columns=[target_col])
+        raise KeyError(f"Target '{target_col}' not found.")
+
+    churn_related_cols = [col for col in df.columns if "Churn" in col]
+    X = df.drop(columns=churn_related_cols)
     y = df[target_col]
     
+    print(f"Features used: {X.columns.tolist()}")
     return train_test_split(X, y, test_size=test_size, random_state=42)
 
 def scale_data(X_train, X_test):
-    X_train = X_train.copy()
-    X_test = X_test.copy()
-    
+    X_train, X_test = X_train.copy(), X_test.copy()
     scaler = StandardScaler()
     numeric_cols = X_train.select_dtypes(include=["int64", "float64"]).columns
-    
     X_train[numeric_cols] = scaler.fit_transform(X_train[numeric_cols])
     X_test[numeric_cols] = scaler.transform(X_test[numeric_cols])
-    
     return X_train, X_test
 
 def save_data(X_train, X_test, y_train, y_test):
@@ -66,19 +62,11 @@ def save_data(X_train, X_test, y_train, y_test):
     y_test.to_csv(f"{PROCESSED_DIR}/y_test.csv", index=False)
 
 if __name__ == "__main__":
-    # 1. Prepare
     df = load_data()
     df = clean_data(df)
     df = encode_data(df)
-
-    # 2. Split 
     params = load_params()
     X_train, X_test, y_train, y_test = split_data(df, params["split"]["test_size"])
-
-    # 3. Scale 
     X_train, X_test = scale_data(X_train, X_test)
-
-    # 4. Save
     save_data(X_train, X_test, y_train, y_test)
-
     print("Preprocessing completed successfully")

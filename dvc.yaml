@@ -14,7 +14,7 @@ stages:
     - data/processed
     - src/models/train.py
     outs:
-    - models
+    - models/model.joblib
     params:
     - model.max_depth
     - model.n_estimators

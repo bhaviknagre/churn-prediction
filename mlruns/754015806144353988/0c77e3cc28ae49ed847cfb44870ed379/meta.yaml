@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/bhaviknagre/mops-churn-prediction/mlruns/754015806144353988/0c77e3cc28ae49ed847cfb44870ed379/artifacts
+end_time: 1776747668608
+entry_point_name: ''
+experiment_id: '754015806144353988'
+lifecycle_stage: active
+run_id: 0c77e3cc28ae49ed847cfb44870ed379
+run_name: delightful-calf-683
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1776747664471
+status: 3
+tags: []
+user_id: bhaviknagre

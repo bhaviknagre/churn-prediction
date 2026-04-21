@@ -1,0 +1,6 @@
+artifact_location: file:///Users/bhaviknagre/mops-churn-prediction/mlruns/601896084487678584
+creation_time: 1776748106008
+experiment_id: '601896084487678584'
+last_update_time: 1776748106008
+lifecycle_stage: active
+name: churn_prediction
