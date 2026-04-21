@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/bhaviknagre/mops-churn-prediction/mlruns/754015806144353988/79efe20c3c054b2a94462efbde7f16ef/artifacts
+end_time: 1776746308284
+entry_point_name: ''
+experiment_id: '754015806144353988'
+lifecycle_stage: active
+run_id: 79efe20c3c054b2a94462efbde7f16ef
+run_name: suave-pig-920
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1776746304303
+status: 3
+tags: []
+user_id: bhaviknagre

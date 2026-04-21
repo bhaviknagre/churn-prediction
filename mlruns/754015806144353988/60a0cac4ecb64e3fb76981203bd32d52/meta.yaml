@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/bhaviknagre/mops-churn-prediction/mlruns/754015806144353988/60a0cac4ecb64e3fb76981203bd32d52/artifacts
+end_time: 1776746109145
+entry_point_name: ''
+experiment_id: '754015806144353988'
+lifecycle_stage: active
+run_id: 60a0cac4ecb64e3fb76981203bd32d52
+run_name: defiant-panda-224
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1776746104886
+status: 3
+tags: []
+user_id: bhaviknagre

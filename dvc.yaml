@@ -1,15 +1,20 @@
 stages:
   preprocess:
-    cmd: python src/data/process.py
+    cmd: python3 src/data/process.py
     deps:
     - data/raw/telco_data.xlsx
     - src/data/process.py
     outs:
     - data/processed
+    params:
+    - split.test_size
   train:
-    cmd: python src/models/train.py
+    cmd: python3 src/models/train.py
     deps:
     - data/processed
     - src/models/train.py
     outs:
     - models
+    params:
+    - model.max_depth
+    - model.n_estimators

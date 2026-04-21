@@ -4,12 +4,17 @@ import mlflow
 import mlflow.sklearn
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score
+import yaml
 
 #path 
 
 DATA_DIR = "data/processed"
 MODEL_DIR = "models"
 os.makedirs(MODEL_DIR, exist_ok=True)
+
+def load_params():
+    with open("params.yaml", "r") as f:
+        return yaml.safe_load(f)
 
 def load_data():
     X_train = pd.read_csv(f"{DATA_DIR}/X_train.csv")
@@ -19,7 +24,13 @@ def load_data():
     return X_train, X_test, y_train, y_test
 
 def train_model(X_train, y_train):
-    model = RandomForestClassifier(n_estimators=100, max_depth=5, random_state=42)
+    params = load_params()
+    model = RandomForestClassifier(
+        n_estimators=params["model"]["n_estimators"],
+        max_depth = params["model"]["max_depth"],
+        random_state=42
+
+    )
     model.fit(X_train, y_train)
     return model
 
@@ -49,6 +60,6 @@ if __name__ == "__main__":
         mlflow.log_metric("recall", recall)
 
         #log model
-        mlflow.sklearn.log_model(model, "model")
+        mlflow.sklearn.log_model(model, "model", registered_model_name="churn_model")
 
         print(f"accuracy: {acc}")

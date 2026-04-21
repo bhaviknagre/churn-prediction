@@ -2,6 +2,7 @@ import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler
+import yaml
 
 # Paths
 RAW_DATA_PATH = "data/raw/telco_data.xlsx"
@@ -10,12 +11,22 @@ PROCESSED_DIR = "data/processed"
 os.makedirs(PROCESSED_DIR, exist_ok=True)
 
 def load_data():
-    return pd.read_excel(RAW_DATA_PATH)
+    df = pd.read_excel(RAW_DATA_PATH)
+    df.columns = df.columns.str.strip()
+    return df
 
+def load_params():
+    with open("params.yaml", "r") as f:
+        return yaml.safe_load(f)
+    
 def clean_data(df):
     if "customerID" in df.columns:
         df = df.drop(columns=["customerID"])
-    df["Total Charges"] = pd.to_numeric(df["Total Charges"], errors="coerce")
+    
+    # Use the name with the space as discovered earlier
+    if "Total Charges" in df.columns:
+        df["Total Charges"] = pd.to_numeric(df["Total Charges"], errors="coerce")
+    
     df = df.fillna(df.median(numeric_only=True))
     return df
 
@@ -25,18 +36,24 @@ def encode_data(df):
         df[col] = le.fit_transform(df[col])
     return df
 
-def split_data(df):
-    X = df.drop("Churn Label", axis=1)
-    y = df["Churn Label"]
-    return train_test_split(X, y, test_size=0.2, random_state=42)
+def split_data(df, test_size):
+    df.columns = df.columns.str.strip()
+    target_col = "Churn Label" 
+    
+    if target_col not in df.columns:
+        raise KeyError(f"Target '{target_col}' not found. Available: {df.columns.tolist()}")
+    X = df.drop(columns=[target_col])
+    y = df[target_col]
+    
+    return train_test_split(X, y, test_size=test_size, random_state=42)
 
 def scale_data(X_train, X_test):
-    scaler = StandardScaler()
+    X_train = X_train.copy()
+    X_test = X_test.copy()
     
-    # Identify numeric columns
+    scaler = StandardScaler()
     numeric_cols = X_train.select_dtypes(include=["int64", "float64"]).columns
     
-    # Fit ONLY on training data, transform both
     X_train[numeric_cols] = scaler.fit_transform(X_train[numeric_cols])
     X_test[numeric_cols] = scaler.transform(X_test[numeric_cols])
     
@@ -55,7 +72,8 @@ if __name__ == "__main__":
     df = encode_data(df)
 
     # 2. Split 
-    X_train, X_test, y_train, y_test = split_data(df)
+    params = load_params()
+    X_train, X_test, y_train, y_test = split_data(df, params["split"]["test_size"])
 
     # 3. Scale 
     X_train, X_test = scale_data(X_train, X_test)
